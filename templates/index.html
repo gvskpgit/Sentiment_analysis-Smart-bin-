@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png" sizes="80x80">
+</head>
+<body>
+    <header>
+        <h1>SENTIMENT ANALYZER</h1>
+        <hr>
+    </header>
+    <main class="dashboard">
+        <section class="left-panel">
+            <div class="image-placeholder">
+                <img src="{{ url_for('static', filename='images/image 1.JPG') }}" alt="Recycling Bin" style="width: 100%; height: 100%; border-radius: 20px; object-fit: cover;">
+            </div>
+            <div class="comments-count">
+                <span class="icon">💬</span>
+                <div>
+                    <p class="count">{{ previous_comments|length }}</p>
+                    <p class="label">Comments</p>
+                </div>
+            </div>
+            <div class="previous-comments-box">
+                <h3>Latest Comments</h3>
+                <ul>
+                    {% for item in previous_comments[-1:-5:-1] %}
+                        <li>
+                            {{ item.comment }}
+                            {% if item.prediction == 'Positive' %}
+                                <span class="status positive"></span>
+                            {% else %}
+                                <span class="status negative"></span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section class="right-panel">
+            <form action="/predict" method="POST" class="comment-form">
+                <label for="comment-input">Enter Your Comment</label>
+                <textarea id="comment-input" name="comment" placeholder="Enter your comment here" required>{{ comment if comment else '' }}</textarea>
+                <button type="submit">Analyze</button>
+            </form>
+            {% if prediction %}
+            <div class="prediction-box">
+                <p class="comment-text">{{ comment }}</p>
+                <p class="prediction-text">Prediction : <span class="{{ prediction|lower }}">{{ prediction }}</span></p>
+            </div>
+            {% endif %}
+            <div class="charts-row">
+                <div class="chart-box">
+                    <h4 class="chart-title">Sentiment Distribution - Pie Chart</h4>
+                    <div class="chart-wrapper">
+                        <div class="charts-container" id="pieChartContainer"></div>
+                    </div>
+                    <!-- Legend removed as per user request -->
+                    <!-- <div class="legend">
+                        <span class="legend-color positive"></span> Positive
+                        <span class="legend-color negative"></span> Negative
+                    </div> -->
+                </div>
+                <div class="chart-box">
+                    <h4 class="chart-title">Sentiment Distribution - Bar Chart</h4>
+                    <div class="chart-wrapper">
+                        <div class="charts-container" id="barChartContainer"></div>
+                    </div>
+                    <!-- Legend removed as per user request -->
+                    <!-- <div class="legend">
+                        <span class="legend-color positive"></span> Positive
+                        <span class="legend-color negative"></span> Negative
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="charts-container">
+        <!-- Canvas elements will be appended here -->
+    </div>
+
+    <script>
+        const positiveCount = {{ positive_count }};
+        const negativeCount = {{ negative_count }};
+
+        const data = {
+            labels: ['Positive', 'Negative'],
+            datasets: [{
+                label: 'Sentiment Analysis',
+                data: [positiveCount, negativeCount],
+                backgroundColor: [
+                    'rgba(0, 128, 0, 0.7)',  // green for positive
+                    'rgba(255, 0, 0, 0.7)'   // red for negative
+                ],
+                borderColor: [
+                    'rgba(0, 128, 0, 1)',
+                    'rgba(255, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Pie chart
+        const pieCtx = document.createElement('canvas');
+        pieCtx.id = 'pieChart';
+        pieCtx.width = 300;
+        pieCtx.height = 300;
+        document.getElementById('pieChartContainer').appendChild(pieCtx);
+
+        new Chart(pieCtx.getContext('2d'), {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Sentiment Distribution (Pie Chart)'
+                    }
+                }
+            }
+        });
+
+        // Bar chart
+        const barCtx = document.createElement('canvas');
+        barCtx.id = 'barChart';
+        barCtx.width = 300;
+        barCtx.height = 300;
+        document.getElementById('barChartContainer').appendChild(barCtx);
+
+        new Chart(barCtx.getContext('2d'), {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Sentiment Distribution (Bar Chart)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

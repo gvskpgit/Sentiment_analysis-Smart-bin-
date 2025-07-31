@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #C7FFC6;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    color: #c62828;
+    font-weight: bold;
+    font-size: 0.9rem; /* further decreased font size for better fit */
+    padding: 10px 0 5px 0;
+    border-bottom: 1px solid #000;
+}
+
+body {
+    zoom: 0.7; /* further decreased zoom for better fit */
+}
+
+body {
+    zoom: 0.9; /* scale down the entire page for better fit */
+}
+
+.dashboard {
+    padding: 10px 20px; /* reduced padding for better fit */
+    gap: 15px; /* reduced gap */
+}
+
+.comment-form textarea {
+    font-size: 1.2rem; /* reduced font size */
+    min-height: 80px; /* reduced height */
+}
+
+.comment-form label {
+    font-size: 1.2rem; /* reduced font size */
+}
+
+.comment-form button {
+    font-size: 0.9rem; /* reduced font size */
+    padding: 8px 16px; /* reduced padding */
+}
+
+.comment-text {
+    font-size: 1.2rem; /* reduced font size */
+}
+
+.prediction-text {
+    font-size: 1rem; /* reduced font size */
+}
+
+.previous-comments-box {
+    max-width: 200px; /* reduced width */
+}
+
+.charts-container {
+    width: 250px; /* reduced chart size */
+    height: 250px;
+}
+
+.chart-box {
+    padding: 10px 15px; /* reduced padding */
+}
+
+.charts-row {
+    gap: 10px; /* reduced gap */
+}
+
+.dashboard {
+    display: flex;
+    gap: 30px;
+    padding: 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image-placeholder {
+    background-color: #222;
+    border-radius: 20px;
+    width: 250px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.comments-count {
+    background-color: #d0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #2f7f7f;
+    font-size: 1.2rem;
+}
+
+.comments-count .icon {
+    font-size: 2rem;
+}
+
+.comments-count .count {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.comments-count .label {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.previous-comments-box {
+    background-color: #d0f0f0;
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: #2f7f7f;
+    font-weight: bold;
+    max-width: 250px;
+}
+
+.previous-comments-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.previous-comments-box li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status.positive {
+    background-color: #2e7d32;
+}
+
+.status.negative {
+    background-color: #c62828;
+}
+
+.right-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comment-form {
+    background-color: #d0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    color: #2f7f7f;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-form label {
+    font-size: 1.5rem;
+}
+
+.comment-form textarea {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment-form button {
+    align-self: flex-start;
+    background-color: #2f7f7f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.prediction-box {
+    background-color: #d0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    color: #2f7f7f;
+    font-weight: bold;
+}
+
+.comment-text {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.prediction-text {
+    font-size: 1.5rem;
+}
+
+.prediction-text .positive {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.prediction-text .negative {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.charts-row {
+    display: flex;
+    gap: 20px;
+}
+
+.chart-box {
+    background-color: #d0f0f0;
+    border-radius: 15px;
+    padding: 15px 20px;
+    flex: 1;
+}
+
+.chart-box h4 {
+    color: #2f7f7f;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.charts-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.legend {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #2f7f7f;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.legend-color.positive {
+    background-color: #2e7d32;
+}
